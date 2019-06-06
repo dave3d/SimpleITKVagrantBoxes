@@ -26,6 +26,7 @@ $pyversion = "$version-$bit"
 echo $pyversion
 
 
+# Table of links to the various Python downloadable installers
 [hashtable]$py_links = @{
   "27-64" = "https://www.python.org/ftp/python/2.7.16/python-2.7.16.amd64.msi";
   "27-32" = "https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi";
@@ -53,7 +54,7 @@ $py_exe = "C:\$py_name"
 echo $py_url
 echo $py_exe
 
-# Download Python installer
+# Download Python installer. Check if it's already here.
 if (! (Test-Path $py_exe) )
   {
   echo "Downloading $py_exe"
@@ -65,9 +66,21 @@ else
   echo "$py_exe already downloaded"
   }
 
-# Run the downloaded installer
-$cmd = "$py_exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0"
+# Run the downloaded Python installer
+$cmd = "$py_exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 Include_pip=1"
 echo "Running install command: $cmd"
 Invoke-Expression $cmd
 
 
+if ($version -eq 27) {
+  $install_dir = "C:\Python27"
+} else {
+  if ($bit -eq 32) {
+    $install_dir = "C:\Program Files (x86)\Python$version"
+  } else {
+    $install_dir = "C:\Program Files\Python$version"
+  }
+}
+
+$pip = "$install_dir\Scripts\pip.exe"
+echo $pip
