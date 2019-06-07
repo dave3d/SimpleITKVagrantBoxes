@@ -72,15 +72,3 @@ echo "Running install command: $cmd"
 Invoke-Expression $cmd
 
 
-if ($version -eq 27) {
-  $install_dir = "C:\Python27"
-} else {
-  if ($bit -eq 32) {
-    $install_dir = "C:\Program Files (x86)\Python$version"
-  } else {
-    $install_dir = "C:\Program Files\Python$version"
-  }
-}
-
-$pip = "$install_dir\Scripts\pip.exe"
-echo $pip
