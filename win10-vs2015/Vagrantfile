@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
     echo "Installing/Upgrading Visual Studio 14 (2015)"
     choco upgrade -y visualstudio2015community
     echo "Installing/Upgrading Visual C++ Build Tools"
-    choco upgrade -y vcbuildtools
+    choco upgrade -y windows-sdk-8.1
   SHELL
-  config.vm.provision "shell", path: "install_miniconda.ps1"
+#  config.vm.provision "shell", path: "install_miniconda.ps1"
 end
