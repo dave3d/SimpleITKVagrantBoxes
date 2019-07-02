@@ -1,5 +1,9 @@
 
 
+# This script needs to be executed in a Visual C++ command prompt.
+# The bitness (32 or 64) of the build will depend on the bitness of
+# command prompt window.
+
 IF EXIST "C:\SimpleITK" (
   rename C:\SimpleITK C:\SimpleITK.old
 )
