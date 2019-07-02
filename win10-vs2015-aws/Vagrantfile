@@ -1,6 +1,9 @@
 require 'inifile'
 require 'date'
 
+# Adapted from https://gist.github.com/mkubenka/33b542cbd82614fe7f8b
+#
+
 Vagrant.configure("2") do |config|
   config.vm.box = "dummy"
 
