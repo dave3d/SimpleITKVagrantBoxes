@@ -66,9 +66,12 @@ else
   echo "$py_exe already downloaded"
   }
 
-# Run the downloaded Python installer
-$cmd = "$py_exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 Include_pip=1"
-echo "Running install command: $cmd"
-Invoke-Expression $cmd
+$target_dir = "C:\Python$pyversion"
+$python_exe = "$target_dir/python.exe"
 
+# Run the downloaded Python installer
+$cmd_args = "/qb! InstallAllUsers=1 PrependPath=1 Include_test=0 Include_pip=1 TargetDir=$target_dir"
+echo "Running install command: $py_exe $cmd_args"
+Start-Process "$py_exe" -Wait "$cmd_args"
+Invoke-Expression "$python_exe -m pip install numpy"
 
